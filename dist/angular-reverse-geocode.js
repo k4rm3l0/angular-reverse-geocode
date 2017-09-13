@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AngularJS reverse geocoding directive
  * @author Guilherme Assemany <guilhermeassemany@hotmail.com> (http://assemany.com)
  * @version 1.0.0
