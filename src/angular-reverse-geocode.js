@@ -10,6 +10,7 @@
       var vm = this;
 
       vm.geocodePosition = geocodePosition;
+      vm.parsePosition = parsePosition;
 
       var geocoder = new google.maps.Geocoder();
 
@@ -28,6 +29,14 @@
               errorCallback({status:'KO',reason:'Error while trying to find the location'});
           }
         });
+      }
+
+      function parsePositionArray(jsonPositionArray) {
+          var _returnObject = {};
+          angular.forEach(jsonPositionArray,function (_positionObject) {
+              _returnObject[ _positionObject.types[0]] = _positionObject.short_value;
+          });
+          return _returnObject;
       }
     }])
     .directive('reverseGeocode', function () {
