@@ -31,13 +31,13 @@
         });
       }
 
-      function parsePositionArray(jsonPositionArray) {
-          var _returnObject = {};
-          angular.forEach(jsonPositionArray,function (_positionObject) {
-              _returnObject[ _positionObject.types[0]] = _positionObject.short_value;
-          });
-          return _returnObject;
-      }
+        function parsePositionArray(jsonPositionArray) {
+            var _returnObject = {};
+            angular.forEach(jsonPositionArray,function (_positionObject) {
+                _returnObject[_positionObject.types[0]] = _positionObject.short_name;
+            });
+            return _returnObject;
+        }
     }])
     .directive('reverseGeocode', function () {
         return {
