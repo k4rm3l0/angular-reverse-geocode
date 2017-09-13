@@ -10,7 +10,7 @@
       var vm = this;
 
       vm.geocodePosition = geocodePosition;
-      vm.parsePosition = parsePosition;
+      vm.parsePositionArray = parsePositionArray;
 
       var geocoder = new google.maps.Geocoder();
 
