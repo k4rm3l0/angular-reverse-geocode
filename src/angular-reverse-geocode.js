@@ -5,16 +5,26 @@
  */
 (function () {
     var moduleName = angular.module('AngularReverseGeocode', [])
-    .service('reverseGeocode', ['$http', function($http){
+    .service('reverseGeocode', function(){
 
       var vm = this;
 
       vm.geocodePosition = geocodePosition;
       vm.parsePositionArray = parsePositionArray;
 
-      var geocoder = new google.maps.Geocoder();
+      var geocoder;
+
+      try{
+          geocoder = new google.maps.Geocoder();
+      }catch (err){
+        console.log('UNABLE TO CREATE GEOCODER INSTANCE');
+      }
 
       function geocodePosition(lat, lng, successCallback, errorCallback, responseType) {
+        if(!geocoder){
+            errorCallback({status:'KO',reason:'Unable to create Geocoder Instance'});
+            return;
+        }
         var latlng = new google.maps.LatLng(lat, lng);
         geocoder.geocode({
           latLng: latlng
@@ -38,7 +48,7 @@
             });
             return _returnObject;
         }
-    }])
+    })
     .directive('reverseGeocode', function () {
         return {
             restrict: 'E',
